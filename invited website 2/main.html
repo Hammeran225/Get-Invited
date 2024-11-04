@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invitation</title>
+    <!-- Link to Google Fonts for a unique, memorable font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+    <!-- Meta tag for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include particles.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Include Anime.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <style>
+        /* Reset margins and paddings, set height to 100% */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden; /* Make the page unscrollable */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Set background and text styles */
+        body {
+            background: #000; /* Solid black background for dramatic effect */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Container styling */
+        .container {
+            text-align: center;
+            padding: 20px;
+            z-index: 2; /* Ensure content appears above the particles */
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in;
+            position: relative;
+        }
+
+        #timer {
+            font-size: 2em;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in;
+            position: relative;
+        }
+
+        /* Style the input field and submit button */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 2s ease-in;
+            position: relative;
+        }
+
+        form input {
+            padding: 15px;
+            font-size: 1em;
+            width: 90%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 15px 30px;
+            font-size: 1em;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        form button:hover {
+            background: #ddd;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #ff4d4d;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        /* Particles container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            background-size: cover;
+            background-position: 50% 50%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Behind content */
+        }
+
+        /* Black hole styling */
+        .black-hole {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 2; /* Lowered z-index */
+            display: none;
+            pointer-events: none;
+        }
+
+        /* Welcome message styling */
+        .welcome-message {
+            font-size: 1.5em;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 4;
+        }
+
+        /* Particle styles */
+        .custom-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 3; /* Increased z-index to be above black hole */
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            #timer {
+                font-size: 1.5em;
+            }
+
+            form input, form button {
+                font-size: 1em;
+                padding: 12px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Particles container -->
+    <div id="particles-js"></div>
+
+    <!-- Black hole -->
+    <div class="black-hole" id="blackHole"></div>
+
+    <div class="container" id="contentContainer">
+        <h1 id="mainHeading">Want to get invited?</h1>
+        <div id="timer"></div>
+        <!-- Updated form with Google Form action and hidden inputs -->
+        <form id="contactForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSf-hh5jJL-LHulIuj-ky9hBTx0Ks57PwI_K5dJU1kDhUZpE7A/formResponse" target="hidden_iframe">
+            <!-- Hidden Inputs -->
+            <input type="hidden" name="fvv" value="1">
+            <input type="hidden" name="partialResponse" value="[null,null,&quot;-6197754662442915702&quot;]">
+            <input type="hidden" name="pageHistory" value="0">
+            <input type="hidden" name="fbzx" value="-1338522033173645642">
+            <input type="hidden" name="submissionTimestamp" value="-1">
+            <!-- Main Input Field -->
+            <input type="text" name="entry.318162942" id="contactInfo" placeholder="Email or Phone Number" required>
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+    <!-- Welcome message -->
+    <div class="welcome-message" id="welcomeMessage">Welcome. be on the lookout for updates.</div>
+
+    <!-- JavaScript for the countdown timer, form handling, and particles -->
+    <script>
+        // Set the countdown date to 30 seconds from now
+        var countDownDate = new Date().getTime() + 30000; // 30,000 milliseconds = 30 seconds
+
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            // Time calculations
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("timer").innerHTML = seconds + "s ";
+
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EXPIRED";
+                window.close(); // Close the window when time expires (may not work in all browsers)
+                // Alternatively, redirect to another page
+                // window.location.href = "expired.html";
+            }
+        }, 1000);
+
+        // Form submission and animation
+        var submitted = false;
+
+        document.getElementById("contactForm").addEventListener("submit", function(event){
+            event.preventDefault(); // Prevent default form submission
+            if(submitted) {
+                return;
+            }
+
+            // Validate the input
+            var contactInfo = document.getElementById("contactInfo").value;
+            var errorMessage = document.getElementById("errorMessage");
+
+            // Simple regex patterns for email and phone validation
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var phonePattern = /^\+?[1-9]\d{1,14}$/;
+
+            if (emailPattern.test(contactInfo) || phonePattern.test(contactInfo)) {
+                errorMessage.textContent = "";
+
+                // Stop the timer
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "";
+
+                // Allow the form to submit
+                submitted = true;
+                document.getElementById("contactForm").submit();
+
+                // Trigger the black hole effect after a slight delay to ensure submission
+                setTimeout(function() {
+                    triggerBlackHole();
+                }, 500); // Delay to ensure form submission starts
+
+            } else {
+                errorMessage.textContent = "Please enter a valid email or phone number.";
+            }
+        });
+
+        function triggerBlackHole() {
+            // Show the black hole
+            var blackHole = document.getElementById('blackHole');
+            blackHole.style.display = 'block';
+
+            // Animate black hole expansion
+            anime({
+                targets: '#blackHole',
+                scale: 10, // Reduced scale to prevent covering entire viewport
+                duration: 4000,
+                easing: 'easeInOutQuad'
+            });
+
+            // Animate elements towards the center
+            var elementsToAnimate = ['#mainHeading', '#contactForm', '#timer', '#errorMessage'];
+
+            elementsToAnimate.forEach(function(selector) {
+                var element = document.querySelector(selector);
+                if (element) {
+                    // Get element's position
+                    var rect = element.getBoundingClientRect();
+                    var elemX = rect.left + rect.width / 2;
+                    var elemY = rect.top + rect.height / 2;
+
+                    // Get center position (black hole position)
+                    var centerX = window.innerWidth / 2;
+                    var centerY = window.innerHeight / 2;
+
+                    // Calculate distance to center
+                    var deltaX = centerX - elemX;
+                    var deltaY = centerY - elemY;
+
+                    // Animate element towards center
+                    anime({
+                        targets: element,
+                        translateX: deltaX,
+                        translateY: deltaY,
+                        opacity: 0,
+                        duration: 2000, // Reduced duration for faster disappearance
+                        easing: 'easeInQuad',
+                        complete: function() {
+                            element.style.display = 'none';
+                        }
+                    });
+                }
+            });
+
+            // Start particle animation
+            startParticleAnimation();
+
+            // Show and animate the welcome message
+            var welcomeMessage = document.getElementById('welcomeMessage');
+            welcomeMessage.style.display = 'block';
+
+            anime({
+                targets: welcomeMessage,
+                opacity: [0, 1],
+                scale: [0.8, 1],
+                duration: 2000,
+                easing: 'easeOutQuad'
+            });
+
+            // Animate welcome message to show resistance
+            animateWelcomeMessage();
+        }
+
+        function animateWelcomeMessage() {
+            // Use Anime.js to create resistance effect
+            anime({
+                targets: '#welcomeMessage',
+                translateY: [
+                    { value: -20, duration: 500, easing: 'easeInOutSine' },
+                    { value: 0, duration: 500, easing: 'easeInOutSine' },
+                    { value: -10, duration: 500, easing: 'easeInOutSine' },
+                    { value: 0, duration: 500, easing: 'easeInOutSine' }
+                ],
+                loop: true
+            });
+        }
+
+        function startParticleAnimation() {
+            // Continuously generate particles moving towards the black hole
+            var particleInterval = setInterval(function() {
+                createParticle();
+            }, 50); // Adjusted interval for more particles
+
+            // Stop generating particles after 4 seconds
+            setTimeout(function() {
+                clearInterval(particleInterval);
+            }, 4000); // Match the duration of the black hole animation
+        }
+
+        function createParticle() {
+            var particle = document.createElement('div');
+            particle.classList.add('custom-particle');
+            document.body.appendChild(particle);
+
+            // Random starting position around the edges of the viewport
+            var startX, startY;
+            var edge = Math.floor(Math.random() * 4);
+            switch(edge) {
+                case 0: // Top edge
+                    startX = Math.random() * window.innerWidth;
+                    startY = -10; // Start slightly off-screen
+                    break;
+                case 1: // Right edge
+                    startX = window.innerWidth + 10; // Start slightly off-screen
+                    startY = Math.random() * window.innerHeight;
+                    break;
+                case 2: // Bottom edge
+                    startX = Math.random() * window.innerWidth;
+                    startY = window.innerHeight + 10; // Start slightly off-screen
+                    break;
+                case 3: // Left edge
+                    startX = -10; // Start slightly off-screen
+                    startY = Math.random() * window.innerHeight;
+                    break;
+            }
+
+            particle.style.left = startX + 'px';
+            particle.style.top = startY + 'px';
+
+            // Calculate distance to black hole center
+            var centerX = window.innerWidth / 2;
+            var centerY = window.innerHeight / 2;
+            var deltaX = centerX - startX;
+            var deltaY = centerY - startY;
+            var distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            // Animate particle towards center
+            anime({
+                targets: particle,
+                translateX: deltaX,
+                translateY: deltaY,
+                easing: 'linear',
+                duration: distance / 0.5, // Adjust speed
+                opacity: [
+                    { value: 1, duration: 0 },
+                    { value: 0, duration: 1000, easing: 'easeInQuad', delay: (distance / 0.5) - 1000 }
+                ],
+                complete: function(anim) {
+                    particle.parentNode.removeChild(particle);
+                }
+            });
+        }
+
+        // Initialize particles.js for the initial background particles
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.7
+                },
+                "size": {
+                    "value": 2,
+                    "random": true
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false
+                    },
+                    "onclick": {
+                        "enable": false
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
